@@ -61,3 +61,9 @@
    ```bash
    npm start
    ```
+
+### 4: Set up express Router
+
+1. Created 'index.js' file under 'routes folder' and write code.
+2. Entry file(index.js), use express router.
+3. Do check "npm start" whether router is loaded or not.
