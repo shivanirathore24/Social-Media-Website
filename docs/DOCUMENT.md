@@ -42,7 +42,7 @@
    mkdir config
    ```
 
-### 2: Install Express and Setup Express Server
+### 2: Setup Express Server
 
 1. Install express server; then node_modules folder will be created; verify either installed or not: check package.json file --> in dependencies you will find 'express' with verson .
    ```bash
@@ -90,10 +90,15 @@
 1. routes(index.js): Entry point for all request and handles all direct urls i.e (root level routes) For example : /home , /contact, /about etc
 2. routes(users.js): handles all user related request. For example: users/profile , users/create, users/edit etc..
 
-### 8: Install EJS and Setup View Engine:
+### 8: Install EJS And Setup View Engine:
 
 1. Install EJS; verify either installed or not: check package.json file --> in dependencies you will find 'ejs' with verson.
    ```bash
    npm install ejs
    ```
 2. Setup View Engine (EJS) in index.js(entry file).
+
+### 9: Create a View for 'home'
+
+1. Create 'home.ejs' file under 'views folder' to write html code.
+2. Edit home_controller.js file, replace 'res.end' method(used to render static data directly to browser) with 'res.render' method(used to render dyanamic content).
