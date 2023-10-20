@@ -3,7 +3,6 @@
 ### 1: Setting up Directory Structure:
 
 1. Create an 'index.js' file under your project directory i.e 'SocialMediaWebsite' folder.
-
 2. For creating 'package.json,' run the following command in your project directory:
 
    ```bash
@@ -152,13 +151,15 @@
 ### 14: Linking to mongoDB using mongoose
 
 1. Mongoose is a Node.js(Object Data Modeling) library for MongoDB, offering schema definition, data validation, and an API for data operations. It streamlines MongoDB usage, maintaining data integrity, and simplifying Node.js app development with MongoDB.
-
 2. Install mongoose; verify either installed or not: check package.json file --> in dependencies you will find 'mongoose' with verson.
    ```bash
    npm install mongoose
    ```
 3. Create mongoose.js file inside config folder; write code that connects Node.js to a MongoDB database and logs either a successful or failed connection.
-
 4. Imports a database connection setup from the "mongoose.js" file into index.js (entry file).
-
 5. Run Project, you will see "MongoDB connect" message for successful connection.
+
+### 15: Setting up User Schema
+
+1. A schema - used with database like MongoDB, defines the structure of data, specifying the type and organization of fields. It enforces data consistency, validation, and integrity, ensuring that data adheres to a predefined structure.
+2. Create 'user.js' file under 'models folder' for userSchema and create fields - email, password and name with timestamps(to record when user was created).
