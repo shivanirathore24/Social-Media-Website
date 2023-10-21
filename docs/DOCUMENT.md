@@ -206,3 +206,28 @@
    i.e router.post("/create", usersController.create);
 
 4. Click Image: [Data saved in database after Sign-up](../assets/images/output/user_signup_db.png)
+
+### 20. Create User Sign-In (Manual Authentication)
+
+1. Created seperate branch for Manual Authentication :
+   ```bash
+   git checkout -b manual-local-auth
+   ```
+2. When user clicks on 'Sign In' button then action - '/users/create-session is called'.
+3. Create action - 'createSession' inside users_controller.js for creating Session during Sign-In.
+4. The 'createSession' function in the user controller handles user sign-in and session creation, employing modern asynchronous programming with async/await. Steps are taken within this action :
+
+- _User Lookup_ : Search for a user in database with the provided email using await User.findOne({ email: req.body.email }).
+
+- _User Found_ :
+
+  - _Password Check_: If a user is found, check if the provided password matches the user's password stored in the database. If not, the user is redirected back to the 'sign-in' page.
+  - _Session Creation_: If the user's email and password match, a session is created. This involves setting a user identifier in a cookie (in response i.e res.cookie("user_id", user.id); - "user_id" is set to the user's ID) and then redirecting the user to their 'profile page'.
+
+- _User Not Found_ : If no user with the provided email is found, the code redirects the user back to the sign-in page, indicating that the user doesn't exist.
+
+- Error Handling : The code includes error handling to catch and log any issues that may occur during the process. If an error is encountered, the server responds with a server error message (status code 500).
+
+4. Defines a POST request in routes(users.js) that links to the createSession function in the usersController. When accessed, it initiates user session creation.
+
+5. If user sign-in successfully --> session is created --> verfiy: inspect --> application --> cookies --> check user_id value that will be same as store in database for that user.
