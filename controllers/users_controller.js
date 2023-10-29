@@ -1,44 +1,10 @@
 const User = require("../models/user"); //import UserSchema
 
-/*
 module.exports.profile = function (req, res) {
-  if (req.cookies.user_id) {
-    user.findById(req.cookies.user_id, function (err, user) {
-      if (user) {
-        return res.render("user_profile", {
-          title: "User Profile",
-          user: user,
-        });
-      } else {
-        return res.redirect("/users/sign-in");
-      }
-    });
-  } else {
-    return res.redirect("/users/sign-in");
-  }
-};
-*/
-module.exports.profile = async function (req, res) {
-  try {
-    if (req.cookies.user_id) {
-      const user = await User.findById(req.cookies.user_id).exec();
-
-      if (user) {
-        return res.render("user_profile", {
-          title: "User Profile",
-          user: user,
-        });
-      } else {
-        return res.redirect("/users/sign-in");
-      }
-    } else {
-      return res.redirect("/users/sign-in");
-    }
-  } catch (error) {
-    // Handle any potential errors here
-    console.error(error);
-    return res.status(500).send("Internal Server Error");
-  }
+  // res.end("<h1>User Profile!</h1>");
+  return res.render("user_profile", {
+    title: "User Profile",
+  });
 };
 
 //render the sign up page
@@ -54,6 +20,7 @@ module.exports.signIn = function (req, res) {
     title: "Social Media | Sign In",
   });
 };
+
 
 /*** Post the sign up data ***/
 module.exports.create = async function (req, res) {
@@ -82,25 +49,5 @@ module.exports.create = async function (req, res) {
 
 /*** sign-in and create a session for a user ***/
 module.exports.createSession = async function (req, res) {
-  try {
-    // Find the User
-    const user = await User.findOne({ email: req.body.email });
-
-    if (user) {
-      // Handle password mismatch
-      if (user.password !== req.body.password) {
-        return res.redirect("back");
-      }
-
-      // Handle session creation
-      res.cookie("user_id", user.id);
-      return res.redirect("/users/profile");
-    } else {
-      // Handle user not found
-      return res.redirect("back");
-    }
-  } catch (err) {
-    // Handle other errors here
-    console.log("Error in finding user in signing in:", err);
-  }
+  //TODo later
 };
