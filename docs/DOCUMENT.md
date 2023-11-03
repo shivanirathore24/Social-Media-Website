@@ -274,3 +274,19 @@
 5. routes(users.js) - uses Passport's local authentication strategy as middleware. On failure, it redirects to "/users/sign-in"; on success, it calls "createSession" in "usersController."
 
 6. Run Project --> Sign-In --> inspect(homepage) --> application --> cookies - check name of session will be "SocialMediaWeb" and value will be encrypted.
+
+### 22. Setting current Authenticated User 
+
+1. config(passport-local-strategy.js) - defines two middleware functions for Passport.js
+   - _checkAuthentication_: It checks if a user is authenticated (logged in). If authenticated, it allows the request to proceed to the next function. If not, it redirects the user to the sign-in page.
+   - _setAuthenticatedUser_: It sets the current user information from the session cookie to the response's local variables, making the user data available in views, if the user is authenticated.
+
+2. routes(users.js) - route "profile" is accessible if the user is authenticated, with the help of Passport middleware "checkAuthentication" before calling the "usersController.profile" function i.e restrict profile-page visibility when user is signed-out.
+e.g: router.get("/profile", passport.checkAuthentication, usersController.profile); 
+
+3. index.js(entry file) - middleware sets the currently authenticated user's information from the session cookie as a local variable, making it available for views i.e app.use(passport.setAuthenticatedUser);
+
+5. Problems : 
+- Whenever server is re-started, user gets signed-out --> session data is stored temporarily --> Solution : mongoDB
+- Sign-in & Sign-up page are visible when user is signed in i.e during signed-in : sign-up and sign-in page shouldn't visible.
+- Restrict profile-page visibility when user is signed-out.
