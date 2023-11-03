@@ -262,6 +262,7 @@
    npm install express-session
    ```
 2. Express Session:
+
    - Manages/create user sessions in Express.js.
    - Stores and manages session data, like user-specific information in encrypted format in the cookie.
    - Focuses on session data storage and state management.
@@ -275,18 +276,26 @@
 
 6. Run Project --> Sign-In --> inspect(homepage) --> application --> cookies - check name of session will be "SocialMediaWeb" and value will be encrypted.
 
-### 22. Setting current Authenticated User 
+### 22. Setting current Authenticated User
 
 1. config(passport-local-strategy.js) - defines two middleware functions for Passport.js
+
    - _checkAuthentication_: It checks if a user is authenticated (logged in). If authenticated, it allows the request to proceed to the next function. If not, it redirects the user to the sign-in page.
    - _setAuthenticatedUser_: It sets the current user information from the session cookie to the response's local variables, making the user data available in views, if the user is authenticated.
 
 2. routes(users.js) - route "profile" is accessible if the user is authenticated, with the help of Passport middleware "checkAuthentication" before calling the "usersController.profile" function i.e restrict profile-page visibility when user is signed-out.
-e.g: router.get("/profile", passport.checkAuthentication, usersController.profile); 
+   e.g: router.get("/profile", passport.checkAuthentication, usersController.profile);
 
 3. index.js(entry file) - middleware sets the currently authenticated user's information from the session cookie as a local variable, making it available for views i.e app.use(passport.setAuthenticatedUser);
 
-5. Problems : 
+4. Problems :
+
 - Whenever server is re-started, user gets signed-out --> session data is stored temporarily --> Solution : mongoDB
 - Sign-in & Sign-up page are visible when user is signed in i.e during signed-in : sign-up and sign-in page shouldn't visible.
 - Restrict profile-page visibility when user is signed-out.
+
+### 23. Accessing User data to views and limiting page acess
+
+1. views(user_profile.js) - display the user's name and email on a webpage.
+2. controller(users_controller.js) - 'signUp' & 'signIn' function use req.isAuthenticated() to verify user login. Authenticated users are redirected to their profiles, while unauthenticated users can access the sign-up or sign-in pages, enhancing security and user experience. (i.e during sign-in, it will remain to profile page & won't go up to sign-up and sign-in page)
+3. Problem Solved - During signed-in: sign-up and sign-in page shouldn't visible & Restrict profile-page visibility when user is signed-out.
