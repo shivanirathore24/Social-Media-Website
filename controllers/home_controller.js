@@ -1,7 +1,6 @@
 module.exports.home = function (req, res) {
-  // return res.end("<h1>Express is up for Social Media.</h1>");
-  console.log(req.cookies);
-  res.cookie("user_id", 25);
+  // console.log(req.cookies);
+  // res.cookie("user_id", 25);
   console.log(req.cookies);
   return res.render("home", {
     title: "Home",
