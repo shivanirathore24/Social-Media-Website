@@ -56,3 +56,14 @@ module.exports.create = async function (req, res) {
 module.exports.createSession = async function (req, res) {
   return res.redirect("/");
 };
+
+module.exports.destroy = function (req, res) {
+  req.logout(function (err) {
+    if (err) {
+      // Handle errors, e.g., log the error or display a user-friendly message.
+      console.error("Logout error:", err);
+    }
+    // Redirect the user to the home page after logout or error handling.
+    return res.redirect("/");
+  });
+};

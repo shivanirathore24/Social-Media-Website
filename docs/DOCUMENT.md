@@ -308,6 +308,7 @@
    npm install connect-mongo
    ```
 3. index.js(entry file) :
+
 - Configuring a session store using connect-mongo for MongoDB session storage i.e const mongoStore = require("connect-mongo");
 - Configures session settings -
   - The store option configures the session store using connect-mongo.
@@ -316,3 +317,12 @@
   - It logs any setup errors or a success message indicating that the MongoDB connection is configured for session storage.
 
 4. Click Image: [sessions is created in mongoDB](../assets/images/output/mongoStore_for_session.png)
+
+### 25. Creating Sign-out
+
+1. Sign-Out is basically removing the user's session cookie to remove the identity.
+2. views(\_header.ejs): HTML header - shows user's name, on clicking name will redirect to user's profile page; "Sign Out" when logged in; "Sign In" and "Sign Up" links when not logged in.
+3. controller(users_controller.js): Create 'destroy' action in which req.logout() [function provided by the Passport.js library] is called to log a user out, with error handling. If an error occurs, it's logged. After logout or error handling, it redirects the user to the home page ("/").
+4. routes(users.js): defines a route for "sign-out" using the "destroy" function from the "usersController".
+5. Fixed bug: Included content from "\_footer" partial template in the layout.ejs.
+6. Run Project --> When you sign-in: everytime new session is created and when sign-out: session is destroyed from mongoDB (sessions).
