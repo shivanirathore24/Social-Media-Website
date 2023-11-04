@@ -3,10 +3,14 @@ const cookieParser = require("cookie-parser");
 const app = express(); //to get all functionalities of express libraries to run server
 const port = 8000;
 
+/*** database connection ***/
+const db = require("./config/mongoose");
+
 /*** used for session cookie  ***/
 const session = require("express-session");
 const passport = require("passport");
 const passportLocal = require("./config/passport-local-strategy");
+const mongoStore = require("connect-mongo");
 
 /*** Parser-Cookie as middleware ***/
 app.use(express.urlencoded()); //middleware for parsing incoming requests' URL-encoded form data
@@ -15,9 +19,6 @@ app.use(cookieParser()); // middleware for parsing cookies, enabling data handli
 //write before express router, becoz views are going tp be render which have layouts.
 const expressLayout = require("express-ejs-layouts");
 app.use(expressLayout);
-
-/*** database connection ***/
-const db = require("./config/mongoose");
 
 /*** Setup static assets ***/
 app.use(express.static("./assets"));
@@ -34,15 +35,25 @@ app.set("views", "./views");
 app.use(
   session({
     name: "SocialMediaWeb",
-    //TODO change the secret before deployment in production mode
     secret: "LordShiva",
     saveUninitialized: false,
     resave: false,
     cookie: {
-      maxAge: 1000 * 60 * 100, //milli-seconds
-    }
+      maxAge: 1000 * 60 * 100,
+    },
+    store: mongoStore.create(
+      // Use 'new' with MongoStore to create an instance
+      {
+        mongoUrl: "mongodb://127.0.0.1:27017/socialmedia_dev",
+        autoRemove: "disabled",
+      },
+      function (err) {
+        console.log(err || "Connect-mongodb setup ok");
+      }
+    ),
   })
 );
+
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(passport.setAuthenticatedUser);

@@ -299,3 +299,20 @@
 1. views(user_profile.js) - display the user's name and email on a webpage.
 2. controller(users_controller.js) - 'signUp' & 'signIn' function use req.isAuthenticated() to verify user login. Authenticated users are redirected to their profiles, while unauthenticated users can access the sign-up or sign-in pages, enhancing security and user experience. (i.e during sign-in, it will remain to profile page & won't go up to sign-up and sign-in page)
 3. Problem Solved - During signed-in: sign-up and sign-in page shouldn't visible & Restrict profile-page visibility when user is signed-out.
+
+### 24. Setting Up MongoStore for session cookies
+
+1. Problem : without mongo store, user was logged out after every server restart. This issue is resolved.
+2. Install connect-mongo:
+   ```bash
+   npm install connect-mongo
+   ```
+3. index.js(entry file) :
+- Configuring a session store using connect-mongo for MongoDB session storage i.e const mongoStore = require("connect-mongo");
+- Configures session settings -
+  - The store option configures the session store using connect-mongo.
+  - mongoStore.create() is used to create an instance of the store, specifying the MongoDB database URL for session storage.
+  - The autoRemove option is set to "disabled" to control session removal behavior.
+  - It logs any setup errors or a success message indicating that the MongoDB connection is configured for session storage.
+
+4. Click Image: [sessions is created in mongoDB](../assets/images/output/mongoStore_for_session.png)
