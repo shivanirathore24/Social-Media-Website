@@ -1,0 +1,33 @@
+footer
+{
+    background-color: #696666;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+  
+    p{
+      margin: 0;
+      margin-right: 20px;
+      padding: 0;
+      color: white;
+      align-self: center;
+    }
+
+    ul{
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        align-self: center;
+        li {
+            display: inline;
+            margin-right: 10px; 
+            a{
+                color: white;
+                text-decoration: none;
+                font-size: 1rem;
+            }
+        }
+    }
+
+}

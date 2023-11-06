@@ -1,0 +1,17 @@
+
+body{
+    border: 2px solid black;
+    margin: 0;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden; /* Hide overflow for the entire body */
+    font-family:Arial, Helvetica, sans-serif;
+    
+    #layout-main{
+        flex: 1;
+        height: 100%;
+        overflow: auto; /* Add scrollbars if content overflows */
+    }
+}

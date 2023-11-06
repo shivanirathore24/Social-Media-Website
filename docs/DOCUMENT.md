@@ -326,3 +326,23 @@
 4. routes(users.js): defines a route for "sign-out" using the "destroy" function from the "usersController".
 5. Fixed bug: Included content from "\_footer" partial template in the layout.ejs.
 6. Run Project --> When you sign-in: everytime new session is created and when sign-out: session is destroyed from mongoDB (sessions).
+
+### 26. Setting up SCSS and Using it for Styling
+
+1. Install : "node-sass-middleware"
+   ```bash
+   npm install node-sass-middleware
+   ```
+2. index.js( entry file) : sets up Node.js middleware using node-sass-middleware to compile SCSS files from the "assets/scss" directory to CSS files in "assets/css" with extended style, and serves them with a "/css" prefix.
+
+3. Created 'scss' folder under assets: created scss files for layout, header, footer, user_profile and did styling (indentation based syntax).
+
+4. views(layout.ejs) : added HTML links to external CSS files for styling the header, footer and layout (almost same for all pages)
+
+5. Main-content(differs page to page) related link will added for respective view pages to provide unique styling. for e.g: profile page styling, html link will be added to user_profile.ejs.
+
+6. Modified content realated to footer and header in \_header.ejs and \_footer.ejs.
+
+7. Run Project --> While accessing a specific webpage, the required SCSS file for that page is compiled automatically. The resulting CSS file is updated in the "assets/css" folder before the page loads.
+
+8. Remember: At current development, files are compiled when loading related pages, not when the server starts. But Ideally at production, pre-compilation (not during loading page) is ideal to avoid performance impact.

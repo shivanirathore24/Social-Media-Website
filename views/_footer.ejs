@@ -1,1 +1,9 @@
-<footer>Page Footer</footer>
+<footer>
+    <p>@Shiv.vani24 <br>All right reserved</p>
+    <ul>
+        <% if(locals.user) { %>
+        <li><a href="/">Home</a></li>
+        <li><a href="/users/profile">Profile</a></li>
+        <% } %>
+    </ul>
+</footer>
