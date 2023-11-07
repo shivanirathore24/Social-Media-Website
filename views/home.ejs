@@ -7,4 +7,18 @@
         <textarea name = "content" cols = "30" placeholder="Type here..." rows="3" required></textarea>
         <input type="submit" value ="Post">
     </form>
+
+    <!-- Displaying Posts -->
+    <div id="post-list-container">
+        <ul>
+            <% for(post of posts) { %>
+                <p>
+                    <li>
+                        <%= post.content %> <br>
+                         <small><%= post.user.name %></small>
+                    </li>
+                </p>
+            <% } %>
+        </ul>
+    </div>
 </section>

@@ -357,16 +357,31 @@
 1. controllers --> create 'posts_controller.js' file : 'create' action creates a new post by extracting content from a request, linking it to the current user and handling both success and error cases.
 
 2. routes --> create 'posts.js' file : handled post creation requests, directing them to the "create" function in the "postsController."
+
    ```bash
    router.post("/create", postsController.create);
    ```
 
 3. routes(index.js) : added below line
+
    ```bash
    router.use("/posts", require("./posts"));
    ```
+
    allows you to access and use the routes defined in the "posts" module when you visit URLs that start with "/posts" in your web application.
 
 4. views(home.ejs) : "Action" in the HTML form specifies the URL where the form data is sent when the user submits it. i.e added action="posts/create" in form tag.
 
 5. Click Image: [Post is created in mongoDB for associated user](../assets/images/output/post_creation_db.png)
+
+### 29. Display Posts and related User 
+
+1. controller(home_controller.js) : 'home' action retrieves all posts from the database, populates the "user" field for each post to include user details i.e.
+
+   ```bash
+   Post.find({}).populate('user').exec();
+   ```
+
+   It then renders the "home" view with the fetched posts, or handles errors with a server error response.
+
+2. views(home.ejs) : code iterates through a list of posts and displays their 'content' along with the name of the 'user' who created them.
