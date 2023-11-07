@@ -346,3 +346,7 @@
 7. Run Project --> While accessing a specific webpage, the required SCSS file for that page is compiled automatically. The resulting CSS file is updated in the "assets/css" folder before the page loads.
 
 8. Remember: At current development, files are compiled when loading related pages, not when the server starts. But Ideally at production, pre-compilation (not during loading page) is ideal to avoid performance impact.
+
+### 27. Creating Schema for Posts
+1. In models folder --> Create file 'post.js' : creates a Mongoose schema for a "Post" with content and a reference to a "User" through their object ID. The "timestamps" option automatically adds "createdAt" and "updatedAt" fields to track document creation and updates.
+2. views(home.ejs) :  created a form for creating posts with a textarea input, and a "Post" button.
