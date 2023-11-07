@@ -385,3 +385,14 @@
    It then renders the "home" view with the fetched posts, or handles errors with a server error response.
 
 2. views(home.ejs) : code iterates through a list of posts and displays their 'content' along with the name of the 'user' who created them.
+
+### 30. Check Authentication on Creating Post
+
+1. Task is not to show Post-form before sign-in : views(home.ejs) -- > use 'locals.user' if-condition in post form then form won't be visible before sign-in.
+
+2. But suppose if someone inspect code and create form and try to submit data ? We need to put route or controller level authentication i.e before calling 'create' action for post, check if user is signed-in or not. In routes(post.js) file -->
+   ```bash
+   router.post("/create", passport.checkAuthentication, postsController.create);
+   ```
+3. Problem solved: Form for creating post won't be visible before Sign-in, if someone try to create form by inspecting code and try to submit form data will be redirected to Sign-in page.
+
