@@ -396,3 +396,8 @@
    ```
 3. Problem solved: Form for creating post won't be visible before Sign-in, if someone try to create form by inspecting code and try to submit form data will be redirected to Sign-in page.
 
+### 31. Created Comments Schema 
+1. models --> commentSchema is created - defining the structure for comments which includes fields for content, linked to a user and post via their ObjectIds, timestamps for automatic tracking of creation and modification times.
+2. models(postSchema) : added comments array within the postSchema serves the purpose of maintaining references to all comments associated with a specific post . This approach allows for a direct relationship between a post and its associated comments, enabling efficient retrieval and manipulation of comments belonging to a particular post without needing additional queries. This denormalized structure facilitates easier access to all related comments for a given post within the Post document itself.
+
+
