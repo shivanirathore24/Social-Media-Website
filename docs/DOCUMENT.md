@@ -410,6 +410,17 @@
    - [Creates an array that contains comments associated with that specific post](../assets/images/output/commentsArray_in_post.png) under 'posts' table.
 
 
+### 33. Nested Population :: Display Comments & related User
+1. controllers(home_controller.js) : added code which fetches all posts, populating 'user' in each post and 'user' in comments within those posts for complete user details.
+2. views(home.ejs): added code- responsible for displaying comments associated with a specific post by using the post's unique ID to target and render the comment content along with the respective user's name.
+
+
+
+
+
+
+
+
 
 
 
