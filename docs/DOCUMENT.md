@@ -400,4 +400,25 @@
 1. models --> commentSchema is created - defining the structure for comments which includes fields for content, linked to a user and post via their ObjectIds, timestamps for automatic tracking of creation and modification times.
 2. models(postSchema) : added comments array within the postSchema serves the purpose of maintaining references to all comments associated with a specific post . This approach allows for a direct relationship between a post and its associated comments, enabling efficient retrieval and manipulation of comments belonging to a particular post without needing additional queries. This denormalized structure facilitates easier access to all related comments for a given post within the Post document itself.
 
+### 32. Adding Comments to the DB
+1. views(home.ejs) : created a comment form per post if a user is logged in, allowing them to add comments to a post.
+2. controllers --> Create 'comments_controller.js' file : code defines an async function to handle comment creation. It finds a post by ID, creates a comment with content, associates it with the post and user, updates the post's comment array, saves the post, and redirects to the homepage. Error handling ensures responses for potential errors.
+3. routes --> Create 'comment.js' file : manages a route for creating comments, ensuring user authentication via Passport before invoking the comment creation controller function.
+4. routes(index.js) : uses another router for '/comments' endpoint handling.
+5. Click Image to see comments are created in DB :
+   - [All Comments are  created ](../assets/images/output/comments_creation_db.png) under 'comments' table.
+   - [Creates an array that contains comments associated with that specific post](../assets/images/output/commentsArray_in_post.png) under 'posts' table.
+
+
+
+
+
+
+
+
+
+
+
+
+
 

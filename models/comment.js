@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const commentSchema = new mongoose.Schema(
   {
     content: {
-      type: string,
+      type: String,
       required: true,
     },
     //comment belongs to user
@@ -11,7 +11,7 @@ const commentSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
     },
-    posts: {
+    post: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Post",
     },
