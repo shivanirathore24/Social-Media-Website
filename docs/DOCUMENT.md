@@ -414,6 +414,11 @@
 1. controllers(home_controller.js) : added code which fetches all posts, populating 'user' in each post and 'user' in comments within those posts for complete user details.
 2. views(home.ejs): added code- responsible for displaying comments associated with a specific post by using the post's unique ID to target and render the comment content along with the respective user's name.
 
+### 34. Deleting a post (Authorized)
+1. controllers(posts_controller.js) : Created an action "destroy" which finds a post by ID. If the current user matches the post owner, it deletes the post and associated comments before redirecting back; otherwise, it redirects back as unauthorized.
+2. routes(posts.js): code sets up a route '/destroy/:id' using Passport for authentication, invoking 'postsController.destroy' to handle post deletion by ID.
+2. views(home.ejs) : checks if the logged-in user matches the post's creator, then displaying a "Delete Post" link for the authenticated creator's post.
+
 
 
 
