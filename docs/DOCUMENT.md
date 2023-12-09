@@ -374,7 +374,7 @@
 
 5. Click Image: [Post is created in mongoDB for associated user](../assets/images/output/post_creation_db.png)
 
-### 29. Display Posts and related User 
+### 29. Display Posts and related User
 
 1. controller(home_controller.js) : 'home' action retrieves all posts from the database, populates the "user" field for each post to include user details i.e.
 
@@ -396,45 +396,34 @@
    ```
 3. Problem solved: Form for creating post won't be visible before Sign-in, if someone try to create form by inspecting code and try to submit form data will be redirected to Sign-in page.
 
-### 31. Created Comments Schema 
+### 31. Created Comments Schema
+
 1. models --> commentSchema is created - defining the structure for comments which includes fields for content, linked to a user and post via their ObjectIds, timestamps for automatic tracking of creation and modification times.
 2. models(postSchema) : added comments array within the postSchema serves the purpose of maintaining references to all comments associated with a specific post . This approach allows for a direct relationship between a post and its associated comments, enabling efficient retrieval and manipulation of comments belonging to a particular post without needing additional queries. This denormalized structure facilitates easier access to all related comments for a given post within the Post document itself.
 
 ### 32. Adding Comments to the DB
+
 1. views(home.ejs) : created a comment form per post if a user is logged in, allowing them to add comments to a post.
 2. controllers --> Create 'comments_controller.js' file : code defines an async function to handle comment creation. It finds a post by ID, creates a comment with content, associates it with the post and user, updates the post's comment array, saves the post, and redirects to the homepage. Error handling ensures responses for potential errors.
 3. routes --> Create 'comment.js' file : manages a route for creating comments, ensuring user authentication via Passport before invoking the comment creation controller function.
 4. routes(index.js) : uses another router for '/comments' endpoint handling.
 5. Click Image to see comments are created in DB :
-   - [All Comments are  created ](../assets/images/output/comments_creation_db.png) under 'comments' table.
+   - [All Comments are created ](../assets/images/output/comments_creation_db.png) under 'comments' table.
    - [Creates an array that contains comments associated with that specific post](../assets/images/output/commentsArray_in_post.png) under 'posts' table.
 
-
 ### 33. Nested Population :: Display Comments & related User
+
 1. controllers(home_controller.js) : added code which fetches all posts, populating 'user' in each post and 'user' in comments within those posts for complete user details.
 2. views(home.ejs): added code- responsible for displaying comments associated with a specific post by using the post's unique ID to target and render the comment content along with the respective user's name.
 
 ### 34. Deleting a post (Authorized)
+
 1. controllers(posts_controller.js) : Created an action "destroy" which finds a post by ID. If the current user matches the post owner, it deletes the post and associated comments before redirecting back; otherwise, it redirects back as unauthorized.
 2. routes(posts.js): code sets up a route '/destroy/:id' using Passport for authentication, invoking 'postsController.destroy' to handle post deletion by ID.
-2. views(home.ejs) : checks if the logged-in user matches the post's creator, then displaying a "Delete Post" link for the authenticated creator's post.
+3. views(home.ejs) : checks if the logged-in user matches the post's creator, then displaying a "Delete Post" link for the authenticated creator's post.
 
+### 35. Deleting a Comment (Authorized)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+1. controllers(comments_controller.js) : added code that retrieves the comment using Comment.findById() based on the comment ID. If the comment's user matches the current user, it deletes the comment using Comment.deleteOne() and removes its reference from the associated post using Post.findByIdAndUpdate() with $pull to update the comments array before redirecting; otherwise, it redirects without changes, handling errors.
+2. routes(comments.js): route triggers the comment deletion process by calling the corresponding controller function after verifying passport authentication for the specified comment ID.
+3. views(home.ejs): added delete link for the comment owner, allowing them to delete their own comment.
