@@ -427,3 +427,10 @@
 1. controllers(comments_controller.js) : added code that retrieves the comment using Comment.findById() based on the comment ID. If the comment's user matches the current user, it deletes the comment using Comment.deleteOne() and removes its reference from the associated post using Post.findByIdAndUpdate() with $pull to update the comments array before redirecting; otherwise, it redirects without changes, handling errors.
 2. routes(comments.js): route triggers the comment deletion process by calling the corresponding controller function after verifying passport authentication for the specified comment ID.
 3. views(home.ejs): added delete link for the comment owner, allowing them to delete their own comment.
+
+
+### 36. Distributing the Code into Partials
+1. Created two file under 'views' directory --> '_comment.ejs' and '_post.ejs'.
+2. From 'home.ejs' moved code related to container with id="post-list-container" i.e for Displaying Post into newly created file '_post.ejs' file. 
+3. From '_post.ejs' moved code related to container with class="post-comments-list" i.e for Displaing Comment into newly created file '_comment.ejs'.
+
