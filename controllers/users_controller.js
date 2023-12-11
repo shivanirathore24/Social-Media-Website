@@ -1,10 +1,16 @@
 const User = require("../models/user"); //import UserSchema
 
-module.exports.profile = function (req, res) {
-  // res.end("<h1>User Profile!</h1>");
-  return res.render("user_profile", {
-    title: "User Profile",
-  });
+module.exports.profile = async function (req, res) {
+  try {
+    const user = await User.findById(req.params.id).exec();
+    return res.render("user_profile", {
+      title: "User Profile",
+      profile_user: user,
+    });
+  } catch (err) {
+    console.log("Error in finding user:", err);
+    return res.status(500).send("Internal Server Error");
+  }
 };
 
 //render the sign up page

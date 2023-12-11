@@ -428,9 +428,17 @@
 2. routes(comments.js): route triggers the comment deletion process by calling the corresponding controller function after verifying passport authentication for the specified comment ID.
 3. views(home.ejs): added delete link for the comment owner, allowing them to delete their own comment.
 
-
 ### 36. Distributing the Code into Partials
-1. Created two file under 'views' directory --> '_comment.ejs' and '_post.ejs'.
-2. From 'home.ejs' moved code related to container with id="post-list-container" i.e for Displaying Post into newly created file '_post.ejs' file. 
-3. From '_post.ejs' moved code related to container with class="post-comments-list" i.e for Displaing Comment into newly created file '_comment.ejs'.
 
+1. Created two file under 'views' directory --> '\_comment.ejs' and '\_post.ejs'.
+2. From 'home.ejs' moved code related to container with id="post-list-container" i.e for Displaying Post into newly created file '\_post.ejs' file.
+3. From '\_post.ejs' moved code related to container with class="post-comments-list" i.e for Displaing Comment into newly created file '\_comment.ejs'.
+
+### 37. User Profile Links
+
+1. controller(home_controllers.js) : Find all the user -
+   users: Retrieves all users from database, all_users: Passes retrieved users to render homepage.
+2. views(home.ejs) : display all list of users.
+3. routes(users.js) : Updated route by adding ":id" in /profile/:id using Passport authentication, rendering user profile by ID via usersController.profile.
+4. controller(users_controller.js) : Retrieves user by ID, renders "user_profile" view, passing user data with the title "User Profile" to the view.
+5. views(user_profile.ejs) : content has been updated to display data from the profile_user object instead of the original user object.
