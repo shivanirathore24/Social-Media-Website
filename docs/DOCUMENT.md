@@ -442,3 +442,9 @@
 3. routes(users.js) : Updated route by adding ":id" in /profile/:id using Passport authentication, rendering user profile by ID via usersController.profile.
 4. controller(users_controller.js) : Retrieves user by ID, renders "user_profile" view, passing user data with the title "User Profile" to the view.
 5. views(user_profile.ejs) : content has been updated to display data from the profile_user object instead of the original user object.
+
+### 38. Updating a User's Profile
+
+1. views(user_profile.ejs): Added code checks if the logged-in user matches the profile user. If true, it displays an update form; otherwise, it shows the profile information.
+2. controller(users_controller.js) : aaded 'update' actions which updates user data if the logged-in user ID matches the provided ID, redirects on success, sends "Unauthorized" status on mismatch, and handles internal errors.
+3. routes(users.js): defines a route for user update, authenticated with Passport middleware, linked to the update function in the usersController.
