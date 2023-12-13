@@ -448,3 +448,8 @@
 1. views(user_profile.ejs): Added code checks if the logged-in user matches the profile user. If true, it displays an update form; otherwise, it shows the profile information.
 2. controller(users_controller.js) : aaded 'update' actions which updates user data if the logged-in user ID matches the provided ID, redirects on success, sends "Unauthorized" status on mismatch, and handles internal errors.
 3. routes(users.js): defines a route for user update, authenticated with Passport middleware, linked to the update function in the usersController.
+
+### 39. Improving SCSS Of Home Page
+
+1. assets/scss --> Create 'home.scss' file : Applied basic styling i.e Flexbox layout: 70% width for feed posts, 30% width for user friends, including border.
+2. views(home.ejs) : enclosed the homepage content within 'home-container' div and linked "home.css" for styling.
